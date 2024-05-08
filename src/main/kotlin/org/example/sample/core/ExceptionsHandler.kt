@@ -6,12 +6,22 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ExceptionHandler
 import org.springframework.web.bind.annotation.RestControllerAdvice
 import org.springframework.web.bind.support.WebExchangeBindException
+import org.springframework.web.server.ResponseStatusException
 import org.springframework.web.server.ServerWebExchange
 import org.springframework.web.server.ServerWebInputException
 
 @RestControllerAdvice
 @Order(-2)
 class ExceptionsHandler {
+    @ExceptionHandler(ResponseStatusException::class)
+    fun handleResponseStatusExceptions(ex: ResponseStatusException): ErrorResponse {
+        return ErrorResponse(
+            code = ex.statusCode.value(),
+            error = ex.reason ?: "응답 오류가 발생했습니다.",
+            message = ex.message
+        )
+    }
+
     @ExceptionHandler(WebExchangeBindException::class)
     fun handleValidationExceptions(ex: WebExchangeBindException): ErrorResponse {
         val errorMessage = ex.bindingResult.fieldErrors.joinToString { it.defaultMessage ?: "" }
