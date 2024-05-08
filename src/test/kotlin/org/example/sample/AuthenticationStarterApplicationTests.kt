@@ -1,4 +1,4 @@
-package org.example.authenticationstarter
+package org.example.sample
 
 import org.junit.jupiter.api.Test
 import org.springframework.boot.test.context.SpringBootTest

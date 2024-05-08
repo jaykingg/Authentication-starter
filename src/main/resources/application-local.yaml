@@ -1,0 +1,38 @@
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  data:
+    r2dbc:
+      repositories:
+        enabled: true
+
+  r2dbc:
+    url: r2dbc:mysql://localhost:3306/test_db?useUnicode=true&serverTimezone=UTC
+    username: test
+    password: test
+
+  jwt:
+    secret-key: b8bfa9b8435613e425f43aec82f0654daf5f4dfc457ade485e2dd76662d746d3f0b457f9b869f6ed576865ff9e4b29cf0cd97890ab3456c6457d83d7576f29b6
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /swagger.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+  cache:
+    disabled: true
+  override-with-generic-response: false
+  model-and-view-allowed: true
+
+logging:
+  level:
+    org.springframework.r2dbc.core: debug
+    org.springframework.r2dbc: debug
+    root: debug
