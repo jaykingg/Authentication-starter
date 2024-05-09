@@ -40,8 +40,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
     /* Spring API Docs*/
-    implementation("org.springframework.boot:spring-boot-starter-webflux")
-    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.0.4")
+    implementation("org.springdoc:springdoc-openapi-starter-webflux-ui:2.3.0")
 
     /* JWT */
     implementation("io.jsonwebtoken:jjwt-api:0.11.5")
