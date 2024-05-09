@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController
 class AuthenticationController(
     private val accountService: AccountService
 ) {
-    @Operation(description = "회원가입")
+    @Operation(description = "사용자 등록")
     @PostMapping("/register")
     suspend fun registerAccount(
         @Valid @RequestBody payload: AccountSavePayload
