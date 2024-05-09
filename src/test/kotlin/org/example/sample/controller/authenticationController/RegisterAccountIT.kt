@@ -59,17 +59,18 @@ class RegisterAccountIT(
             )
 
             Then("Response 200 - AccountView") {
-                request
+                val result = request
                     .bodyValue(payload)
                     .exchange()
                     .expectStatus().isOk
                     .expectBody<AccountView>()
                     .returnResult()
                     .responseBody!!
-                    .should {
-                        it.name shouldBe payload.name
-                        it.role shouldBe payload.role
-                    }
+
+                val account = accountRepository.findById(result.id)!!
+                account.name shouldBe payload.name
+                account.role shouldBe payload.role
+
             }
         }
     }
