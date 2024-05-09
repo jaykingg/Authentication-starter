@@ -1,0 +1,10 @@
+spring:
+  config:
+    activate:
+      on-profile: production
+
+springdoc:
+  swagger-ui:
+    enabled: false
+  api-docs:
+    enabled: false

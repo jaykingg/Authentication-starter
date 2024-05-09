@@ -9,27 +9,25 @@ import org.springframework.context.annotation.Configuration
 @Configuration
 class SwaggerConfig {
     @Bean
-    fun defaultGroup1(): GroupedOpenApi {
-        val packagesToScan = "org.example.sample"
+    fun publicApi(): GroupedOpenApi = GroupedOpenApi.builder()
+        .group("jwt")
+        .packagesToScan("org.example.sample")
+        .build()
+
+
+    @Bean
+    fun publicApiSecond(): GroupedOpenApi {
+        /* Group 에 포함시킬 Path*/
+        val pathToMatch = "/sample/**"
+
+        /* Group 에서 제외시킬 Paths */
+        val pathsToExclude = arrayOf("/sample/exclude1/**", "/sample/exclude2/**")
         return GroupedOpenApi.builder()
-            .group("jwt")
-            .packagesToScan(packagesToScan)
+            .group("sample")
+            .pathsToMatch(pathToMatch)
+            .pathsToExclude(pathsToExclude[0], pathsToExclude[1])
             .build()
     }
-
-//    @Bean
-//    fun sampleGroup2(): GroupedOpenApi {
-//        /* Group 에 포함시킬 Path*/
-//        val pathToMatch = "/sample/**"
-//
-//        /* Group 에서 제외시킬 Paths */
-//        val pathsToExclude = arrayOf("/sample/exclude1/**", "/sample/exclude2/**")
-//        return GroupedOpenApi.builder()
-//            .group("sample")
-//            .pathsToMatch(pathToMatch)
-//            .pathsToExclude(pathsToExclude[0], pathsToExclude[1])
-//            .build()
-//    }
 
     @Bean
     fun openAPI(): OpenAPI {
