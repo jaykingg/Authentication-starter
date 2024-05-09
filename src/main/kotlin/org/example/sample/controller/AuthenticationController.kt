@@ -1,5 +1,6 @@
 package org.example.sample.controller
 
+import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag
 import jakarta.validation.Valid
 import org.example.sample.domain.toView
@@ -19,12 +20,13 @@ import org.springframework.web.bind.annotation.RestController
 class AuthenticationController(
     private val accountService: AccountService
 ) {
-
+    @Operation(description = "회원가입")
     @PostMapping("/register")
     suspend fun registerAccount(
         @Valid @RequestBody payload: AccountSavePayload
     ): AccountView = accountService.registerAccount(payload).toView()
 
+    @Operation(description = "token 발급")
     @PostMapping("/token")
     suspend fun authenticate(
         @Valid @RequestBody payload: AccountTokenPayload
