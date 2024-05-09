@@ -40,7 +40,7 @@ data class Account(
     @field: CreatedDate
     val createAt: Instant? = null,
 
-    @field: Schema(description = "수정일자 - ㅕㅆㅊ")
+    @field: Schema(description = "수정일자 - UTC")
     @field: LastModifiedDate
     val updateAt: Instant? = null
 )
