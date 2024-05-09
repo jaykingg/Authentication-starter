@@ -24,4 +24,9 @@ class JwtUtil(private val secretKey: String = "b8bfa9b8435613e425f43aec82f0654da
     fun extractUsername(token: String): String? = extractClaims(token).subject
 
     fun isTokenExpired(token: String): Boolean = extractClaims(token).expiration.before(Date())
+
+    fun validateToken(token: String, username: String): Boolean {
+        return extractUsername(token) == username && !isTokenExpired(token)
+    }
+
 }
